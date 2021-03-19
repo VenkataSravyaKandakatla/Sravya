@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Meeting from "./Containers/Meeting";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["Poppins", "sans-serif"].join(",")
+  }
+});
+
+class Root extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <MuiThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Switch>
+          <Route exact path="/" component={Meeting} /> 
+          </Switch>
+        </BrowserRouter>
+      </MuiThemeProvider>
+    );
+  }
 }
 
-export default App;
+export default Root;
